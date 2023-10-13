@@ -6,7 +6,11 @@ module.exports = {
       colors: {
         'purple':'#1e2139',
         'pale-purple': '#7c5dfa',
-        'dark-green': '#264426'
+        'dark-green': '#264426',
+        'dark-blue': '#141625'
+      },
+      width:{
+        'custom': '42rem'
       }
     },
   },
