@@ -1,30 +1,54 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </nav>
-  <router-view/>
+  <div
+    v-if="!mobileWidth"
+    class="app flex min-h-screen flex-col lg:flex-row m-8 relative"
+  >
+    <div class="nav absolute bottom-12">
+      <Navigation />
+    </div>
+    <div class="app-content mx-auto w-custom">
+      <router-view />
+    </div>
+  </div>
+  <div
+    v-else
+    class="mobile-message flex flex-col text-center justify-center h-screen bg-purple text-white"
+  >
+    <h1 class="text-4xl font-bold">
+      Sorry, this app is not support on Mobile Devices
+    </h1>
+    <p class="noti mt-4">To use this app, please use a computer or Tablet</p>
+  </div>
 </template>
 
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+<script setup>
+import Navigation from "./components/Navigation.vue";
+import { ref, onMounted } from "vue";
 
-nav {
-  padding: 30px;
+let mobileWidth = ref(null);
 
-  a {
-    font-weight: bold;
-    color: #2c3e50;
+onMounted(() => {
+  checkSize();
+  window.addEventListener("resize", checkSize);
+});
 
-    &.router-link-exact-active {
-      color: #42b983;
-    }
+const checkSize = () => {
+  let windowWidth = window.innerWidth;
+  if (windowWidth <= 750) {
+    return (mobileWidth.value = true);
   }
+  mobileWidth.value = false;
+};
+</script>
+
+<style>
+@import url("https://fonts.googleapis.com/css2?family=Cabin&family=Open+Sans:wght@300&family=Poppins:wght@300&family=Raleway:wght@300&family=Roboto+Condensed:wght@300&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+  background-color: #1e2139;
 }
 </style>
