@@ -1,12 +1,7 @@
 <template>
-  <div
-    v-if="!mobileWidth"
-    class="app flex min-h-screen flex-col lg:flex-row m-8 relative"
-  >
-    <div class="nav absolute bottom-12">
-      <Navigation />
-    </div>
+  <div v-if="!mobileWidth" class="app flex h-full flex-col lg:flex-row m-8">
     <div class="app-content mx-auto w-custom">
+      <InvoiceModal />
       <router-view />
     </div>
   </div>
@@ -22,7 +17,7 @@
 </template>
 
 <script setup>
-import Navigation from "./components/Navigation.vue";
+import InvoiceModal from "./components/InvoiceModal.vue";
 import { ref, onMounted } from "vue";
 
 let mobileWidth = ref(null);
