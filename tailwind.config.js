@@ -4,16 +4,22 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        'purple':'#1e2139',
+        'purple':'#050e4f',
         'pale-purple': '#7c5dfa',
         'dark-green': '#264426',
-        'dark-blue': '#141625'
+        'dark-blue': '#141625',
+        'red': '#ec5757',
+        'dark-purple': '#252945',
+        'content-color': '#141625',
+        'input-color': '#1e2139'
       },
       width:{
-        'custom': '42rem'
+        'custom': '70rem'
       }
     },
   },
-  plugins: [],
+  plugins: [
+    require('tailwind-scrollbar')({ nocompatible: true }),
+  ],
 }
 
