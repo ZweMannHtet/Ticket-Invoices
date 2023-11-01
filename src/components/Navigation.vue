@@ -1,6 +1,6 @@
 <template>
   <header
-    class="header flex flex-row z-50 lg:min-h-full lg:min-w-fit lg:flex-col lg:rounded-full relative cursor-pointer"
+    class="header flex flex-row z-50 lg:min-h-full lg:min-w-fit lg:flex-col lg:rounded-full relative cursor-pointer left-[-20px]"
   >
     <div class="add absolute -right-3 -top-3 text-2xl">
       <svg
