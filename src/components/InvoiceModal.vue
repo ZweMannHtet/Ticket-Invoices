@@ -12,33 +12,45 @@
         New Invoice
       </h1>
 
-      <div class="bill-form flex flex-col">
-        <h4 class="bill-form mb-6 text-lg text-pale-purple">Bill Form</h4>
-        <div class="input flex flex-col mb-6">
-          <label for="billerStreetAddress" class="address text-xs mb-2"
+      <div class="bill-form flex flex-col mb-12 bg-content-color">
+        <h4 class="bill-from mb-6 text-lg text-pale-purple bg-content-color">
+          Bill Form
+        </h4>
+        <div class="input flex flex-col mb-6 bg-content-color">
+          <label
+            for="billerStreetAddress"
+            class="address text-xs mb-2 bg-content-color"
             >Street Address</label
           >
           <input
-            class="text-input bg-white text-white w-full rounded-sm py-1.5 px-1 border-none"
+            class="text-input bg-white text-gray-700 w-full rounded-sm py-1.5 px-1 border-none focus:outline-none"
             type="text"
             required
             id="billerStreetAddress"
             v-model="billerStreetAdress"
           />
         </div>
-        <div class="location-details flex">
-          <div class="input flex flex-col w-[150px] mb-6">
-            <label for="billerCity" class="city text-xs mb-2">City</label>
+        <div class="location-details flex gap-4 bg-content-color">
+          <div
+            class="input flex flex-col w-[150px] mb-6 flex-1 bg-content-color"
+          >
+            <label for="billerCity" class="city text-xs mb-2 bg-content-color"
+              >City</label
+            >
             <input
               type="text"
               required
               id="billerCity"
               v-model="billerCity"
-              class="text-input bg-white text-white w-full rounded-sm py-1.5 px-1 border-none"
+              class="text-input bg-white text-gray-700 w-full rounded-sm py-1.5 px-1 border-none focus:outline-none"
             />
           </div>
-          <div class="input flex flex-col w-[150px] mb-6">
-            <label for="billerZipCode" class="zipcode text-xs mb-2"
+          <div
+            class="input flex flex-col w-[150px] mb-6 flex-1 bg-content-color"
+          >
+            <label
+              for="billerZipCode"
+              class="zipcode text-xs mb-2 bg-content-color"
               >Zip Code</label
             >
             <input
@@ -46,10 +58,10 @@
               required
               id="billerZipCode"
               v-model="billerZipCode"
-              class="text-input bg-white text-white w-full rounded-sm py-1.5 px-1 border-none"
+              class="text-input bg-white text-gray-700 w-full rounded-sm py-1.5 px-1 border-none focus:outline-none"
             />
           </div>
-          <div class="input flex flex-col w-[150px]">
+          <div class="input flex flex-col w-[150px] mb-6 flex-1">
             <label for="billerCountry" class="country text-xs mb-2"
               >Country</label
             >
@@ -58,79 +70,79 @@
               required
               id="billerCountry"
               v-model="billerCountry"
-              class="text-input bg-white text-white w-full rounded-sm py-1.5 px-1 border-none"
+              class="text-input bg-white text-gray-700 w-full rounded-sm py-1.5 px-1 border-none focus:outline-none"
             />
           </div>
         </div>
       </div>
 
-      <div class="bill-to flex flex-col">
+      <div class="bill-to flex flex-col mb-12">
         <h4 class="bill-to mb-6 text-lg text-pale-purple">Bill To</h4>
-        <div class="input flex flex-col">
+        <div class="input flex flex-col mb-6">
           <label for="clientName" class="clientname text-xs mb-2"
             >Client's Name</label
           >
           <input
-            class="text-input bg-white text-white w-full rounded-sm py-1.5 px-1 border-none"
+            class="text-input bg-white text-gray-700 w-full rounded-sm py-1.5 px-1 border-none focus:outline-none"
             type="text"
             required
             id="clientName"
             v-model="clientName"
           />
         </div>
-        <div class="input flex flex-col">
+        <div class="input flex flex-col mb-6">
           <label for="clientEmail" class="clientemail text-xs mb-2"
             >Client's Email</label
           >
           <input
-            class="text-input bg-white text-white w-full rounded-sm py-1.5 px-1 border-none"
+            class="text-input bg-white text-gray-700 w-full rounded-sm py-1.5 px-1 border-none focus:outline-none"
             type="text"
             required
             id="clientEmail"
             v-model="clientEmail"
           />
         </div>
-        <div class="input flex flex-col">
+        <div class="input flex flex-col mb-6">
           <label for="clientStreetAddress" class="streetaddress text-xs mb-2"
             >Street Address</label
           >
           <input
-            class="text-input bg-white text-white w-full rounded-sm py-1.5 px-1 border-none"
+            class="text-input bg-white text-gray-700 w-full rounded-sm py-1.5 px-1 border-none focus:outline-none"
             type="text"
             required
             id="clientStreetAddress"
             v-model="clientStreetAddress"
           />
         </div>
-        <div class="location-details flex">
-          <div class="input flex flex-col w-[150px]">
+        <div class="location-details flex gap-4">
+          <div class="input flex flex-col w-[150px] mb-6 flex-1">
             <label for="clientCity" class="citytwo text-xs mb-2">City</label>
             <input
-              class="text-input bg-white text-white w-full rounded-sm py-1.5 px-1 border-none"
+              class="text-input bg-white text-gray-700 w-full rounded-sm py-1.5 px-1 border-none focus:outline-none"
               type="text"
               required
               id="clientCity"
               v-model="clientCity"
             />
           </div>
-          <div class="input flex flex-col w-[150px]">
+          <div class="input flex flex-col w-[150px] mb-6 flex-1">
             <label for="clientZipCode" class="zipcodetwo text-xs mb-2"
               >Zip Code</label
             >
             <input
-              class="text-input bg-white text-white w-full rounded-sm py-1.5 px-1 border-none"
+              class="text-input bg-white text-gray-700 w-full rounded-sm py-1.5 px-1 border-none focus:outline-none"
               type="text"
               required
               id="clientZipCode"
               v-model="clientZipCode"
             />
           </div>
-          <div class="input flex flex-col w-[150px]">
+          <div class="input flex flex-col w-[150px] mb-6 flex-1">
             <label for="clientCountry" class="countrytwo text-xs mb-2"
               >Country</label
             >
             <input
-              class="text-input bg-white text-white w-full rounded-sm py-1.5 px-1 border-none"
+              class="text-input bg-white text-gray-700 w-full rounded-sm py-1.5 px-1 border-none focus:outline-none"
               type="text"
               required
               id="clientCountry"
@@ -140,26 +152,26 @@
         </div>
       </div>
 
-      <div class="invoice-work flex flex-col">
-        <div class="payment flex">
-          <div class="input flex flex-col">
+      <div class="invoice-work flex flex-col mb-6">
+        <div class="payment flex gap-6">
+          <div class="input flex flex-col mb-6 flex-1">
             <label for="invoiceDate" class="invoicedata text-xs mb-2"
               >Invoice Date</label
             >
             <input
-              class="text-input bg-white text-white w-full rounded-sm py-1.5 px-1 border-none"
+              class="text-input bg-white text-gray-700 w-full rounded-sm py-1.5 px-1 border-none focus:outline-none"
               type="text"
               disabled
               id="invoiceDate"
               v-model="invoiceDate"
             />
           </div>
-          <div class="input flex flex-col">
+          <div class="input flex flex-col mb-6 flex-1">
             <label for="invoiceDateUnix" class="paymentdue text-xs mb-2"
               >Payment Due</label
             >
             <input
-              class="text-input bg-white text-white w-full rounded-sm py-1.5 px-1 border-none"
+              class="text-input bg-white text-gray-700 w-full rounded-sm py-1.5 px-1 border-none focus:outline-none"
               type="text"
               disabled
               id="invoiceDateUnix"
@@ -168,12 +180,12 @@
           </div>
         </div>
 
-        <div class="input flex flex-col">
+        <div class="input flex flex-col mb-6">
           <label for="paymentTerms" class="paymentterm text-xs mb-2"
             >Payment Terms</label
           >
           <select
-            class="text-input bg-white text-white w-full rounded-sm py-1.5 px-1 border-none"
+            class="text-input bg-white text-gray-700 w-full rounded-sm py-1.5 px-1 border-none focus:outline-none"
             type="text"
             required
             id="paymentTerms"
@@ -183,14 +195,14 @@
             <option value="60">Net 60 Days</option>
           </select>
         </div>
-        <div class="input flex flex-col">
+        <div class="input flex flex-col mb-6">
           <label
             for="productDescription"
             class="productdescription text-xs mb-2"
             >Product Description</label
           >
           <input
-            class="text-input bg-white text-white w-full rounded-sm py-1.5 px-1 border-none"
+            class="text-input bg-white text-gray-700 w-full rounded-sm py-1.5 px-1 border-none focus:outline-none"
             type="text"
             required
             id="productDescription"
@@ -199,43 +211,55 @@
         </div>
 
         <div class="work-items">
-          <h3 class="item-list mb-4 text-lg text-gray-500">Item List</h3>
-          <table class="item-list">
-            <tr class="table-heading flex">
-              <th class="item-name">Item Name</th>
-              <th class="qty">Quantity</th>
-              <th class="price">Price</th>
-              <th class="total">Total</th>
+          <h3 class="item-list mb-4 text-lg text-gray-500 w-full">Item List</h3>
+          <table class="item-list mb-4 text-lg w-full">
+            <tr class="table-heading flex gap-4 text-sm mb-4">
+              <th class="item-name basis-1/2 text-left">Item Name</th>
+              <th class="qty basis-1/5 text-left">Quantity</th>
+              <th class="price basis-1/5 text-left">Price</th>
+              <th class="total basis-1/5 self-center text-left">Total</th>
             </tr>
             <tr
-              class="table-items flex"
+              class="table-items flex gap-4 text-sm relative mb-6 w-full"
               v-for="(item, index) in invoiceItemList"
               :key="index"
             >
-              <td class="item-name">
-                <input type="text" v-model="item.itemName" />
+              <td class="item-name basis-1/2">
+                <input type="text" v-model="item.itemName" class="nameInput" />
               </td>
-              <td class="qty"><input type="text" v-model="item.qty" /></td>
-              <td class="price"><input type="text" v-model="item.price" /></td>
-              <td class="total">
+              <td class="qty basis-[10%]">
+                <input type="text" v-model="item.qty" />
+              </td>
+              <td class="price basis-1/5">
+                <input type="text" v-model="item.price" />
+              </td>
+              <td class="total basis-1/5 self-center">
                 $ {{ (item.total = item.qty * item.price) }}
               </td>
               <img
                 @click="deleteInvoiceItem(item.id)"
                 src="@/assets/icon-delete.svg"
                 alt=""
+                class="item-image absolute top-4 right-0 w-3 h-4"
               />
             </tr>
           </table>
-          <div @click="addInvoiceItem" class="button flex">
-            <img src="@/assets/icon-plus.svg" alt="" />
+          <div
+            @click="addInvoiceItem"
+            class="button flex text-white bg-dark-purple text-center justify-center w-full py-3 px-3 rounded-[40px]"
+          >
+            <img
+              src="@/assets/icon-plus.svg"
+              alt=""
+              class="addItem mt-1.5 mr-1 w-3 h-3 bg-transparent"
+            />
             Add New Item
           </div>
         </div>
       </div>
 
-      <div class="save flex">
-        <div class="left">
+      <div class="save flex bg-content-color">
+        <div class="left bg-content-color">
           <button
             @click="closeInvoice"
             class="cancel bg-red items-center py-3 px-3 rounded-[40px] mr-2 text-white"
@@ -243,7 +267,7 @@
             Cancel
           </button>
         </div>
-        <div class="right flex">
+        <div class="right flex bg-content-color">
           <button
             @click="saveDraft"
             class="draft bg-dark-purple items-center py-3 px-3 rounded-[40px] mr-2 text-white"
