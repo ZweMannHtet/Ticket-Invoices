@@ -11,7 +11,8 @@ module.exports = {
         'red': '#ec5757',
         'dark-purple': '#252945',
         'content-color': '#141625',
-        'input-color': '#1e2139'
+        'input-color': '#1e2139',
+        'text-back': '#22274f'
       },
       width:{
         'custom': '70rem'
