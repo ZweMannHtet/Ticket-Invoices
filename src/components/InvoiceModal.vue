@@ -61,8 +61,12 @@
               class="text-input bg-white text-gray-700 w-full rounded-sm py-1.5 px-1 border-none focus:outline-none"
             />
           </div>
-          <div class="input flex flex-col w-[150px] mb-6 flex-1">
-            <label for="billerCountry" class="country text-xs mb-2"
+          <div
+            class="input flex flex-col w-[150px] mb-6 flex-1 bg-content-color"
+          >
+            <label
+              for="billerCountry"
+              class="country text-xs mb-2 bg-content-color"
               >Country</label
             >
             <input
@@ -176,7 +180,7 @@
 
       <div class="invoice-work flex flex-col mb-6 bg-content-color">
         <div class="payment flex gap-6 bg-content-color">
-          <div class="input flex flex-col mb-6 flex-1">
+          <div class="input flex flex-col mb-6 flex-1 bg-content-color">
             <label
               for="invoiceDate"
               class="invoicedata text-xs mb-2 bg-content-color"
@@ -190,7 +194,7 @@
               v-model="invoiceDate"
             />
           </div>
-          <div class="input flex flex-col mb-6 flex-1">
+          <div class="input flex flex-col mb-6 flex-1 bg-content-color">
             <label
               for="invoiceDateUnix"
               class="paymentdue text-xs mb-2 bg-content-color"
@@ -213,13 +217,13 @@
             >Payment Terms</label
           >
           <select
-            class="text-input bg-white text-gray-700 w-full rounded-sm py-1.5 px-1 border-none focus:outline-none"
+            class="text-input bg-white w-full py-1.5 px-1 border-none focus:outline-none"
             type="text"
             required
             id="paymentTerms"
             v-model="paymentTerms"
           >
-            <option value="30">Net 30 Days</option>
+            <option value="30" class="option border-none">Net 30 Days</option>
             <option value="60">Net 60 Days</option>
           </select>
         </div>
@@ -296,8 +300,8 @@
         </div>
       </div>
 
-      <div class="save flex bg-content-color">
-        <div class="left bg-content-color">
+      <div class="save flex bg-content-color mt-4">
+        <div class="left bg-content-color flex-1">
           <button
             @click="closeInvoice"
             class="cancel bg-red items-center py-3 px-3 rounded-[40px] mr-2 text-white"
@@ -305,7 +309,7 @@
             Cancel
           </button>
         </div>
-        <div class="right flex bg-content-color">
+        <div class="right flex bg-content-color flex-1 justify-end">
           <button
             @click="saveDraft"
             class="draft bg-dark-purple items-center py-3 px-3 rounded-[40px] mr-2 text-white"
