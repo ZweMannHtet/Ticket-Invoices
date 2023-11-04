@@ -76,10 +76,14 @@
         </div>
       </div>
 
-      <div class="bill-to flex flex-col mb-12">
-        <h4 class="bill-to mb-6 text-lg text-pale-purple">Bill To</h4>
-        <div class="input flex flex-col mb-6">
-          <label for="clientName" class="clientname text-xs mb-2"
+      <div class="bill-to flex flex-col mb-12 bg-content-color">
+        <h4 class="bill-to mb-6 text-lg text-pale-purple bg-content-color">
+          Bill To
+        </h4>
+        <div class="input flex flex-col mb-6 bg-content-color">
+          <label
+            for="clientName"
+            class="clientname text-xs mb-2 bg-content-color"
             >Client's Name</label
           >
           <input
@@ -90,8 +94,10 @@
             v-model="clientName"
           />
         </div>
-        <div class="input flex flex-col mb-6">
-          <label for="clientEmail" class="clientemail text-xs mb-2"
+        <div class="input flex flex-col mb-6 bg-content-color">
+          <label
+            for="clientEmail"
+            class="clientemail text-xs mb-2 bg-content-color"
             >Client's Email</label
           >
           <input
@@ -102,8 +108,10 @@
             v-model="clientEmail"
           />
         </div>
-        <div class="input flex flex-col mb-6">
-          <label for="clientStreetAddress" class="streetaddress text-xs mb-2"
+        <div class="input flex flex-col mb-6 bg-content-color">
+          <label
+            for="clientStreetAddress"
+            class="streetaddress text-xs mb-2 bg-content-color"
             >Street Address</label
           >
           <input
@@ -114,9 +122,15 @@
             v-model="clientStreetAddress"
           />
         </div>
-        <div class="location-details flex gap-4">
-          <div class="input flex flex-col w-[150px] mb-6 flex-1">
-            <label for="clientCity" class="citytwo text-xs mb-2">City</label>
+        <div class="location-details flex gap-4 bg-content-color">
+          <div
+            class="input flex flex-col w-[150px] mb-6 flex-1 bg-content-color"
+          >
+            <label
+              for="clientCity"
+              class="citytwo text-xs mb-2 bg-content-color"
+              >City</label
+            >
             <input
               class="text-input bg-white text-gray-700 w-full rounded-sm py-1.5 px-1 border-none focus:outline-none"
               type="text"
@@ -125,8 +139,12 @@
               v-model="clientCity"
             />
           </div>
-          <div class="input flex flex-col w-[150px] mb-6 flex-1">
-            <label for="clientZipCode" class="zipcodetwo text-xs mb-2"
+          <div
+            class="input flex flex-col w-[150px] mb-6 flex-1 bg-content-color"
+          >
+            <label
+              for="clientZipCode"
+              class="zipcodetwo text-xs mb-2 bg-content-color"
               >Zip Code</label
             >
             <input
@@ -137,8 +155,12 @@
               v-model="clientZipCode"
             />
           </div>
-          <div class="input flex flex-col w-[150px] mb-6 flex-1">
-            <label for="clientCountry" class="countrytwo text-xs mb-2"
+          <div
+            class="input flex flex-col w-[150px] mb-6 flex-1 bg-content-color"
+          >
+            <label
+              for="clientCountry"
+              class="countrytwo text-xs mb-2 bg-content-color"
               >Country</label
             >
             <input
@@ -152,10 +174,12 @@
         </div>
       </div>
 
-      <div class="invoice-work flex flex-col mb-6">
-        <div class="payment flex gap-6">
+      <div class="invoice-work flex flex-col mb-6 bg-content-color">
+        <div class="payment flex gap-6 bg-content-color">
           <div class="input flex flex-col mb-6 flex-1">
-            <label for="invoiceDate" class="invoicedata text-xs mb-2"
+            <label
+              for="invoiceDate"
+              class="invoicedata text-xs mb-2 bg-content-color"
               >Invoice Date</label
             >
             <input
@@ -167,7 +191,9 @@
             />
           </div>
           <div class="input flex flex-col mb-6 flex-1">
-            <label for="invoiceDateUnix" class="paymentdue text-xs mb-2"
+            <label
+              for="invoiceDateUnix"
+              class="paymentdue text-xs mb-2 bg-content-color"
               >Payment Due</label
             >
             <input
@@ -180,8 +206,10 @@
           </div>
         </div>
 
-        <div class="input flex flex-col mb-6">
-          <label for="paymentTerms" class="paymentterm text-xs mb-2"
+        <div class="input flex flex-col mb-6 bg-content-color">
+          <label
+            for="paymentTerms"
+            class="paymentterm text-xs mb-2 bg-content-color"
             >Payment Terms</label
           >
           <select
@@ -195,10 +223,10 @@
             <option value="60">Net 60 Days</option>
           </select>
         </div>
-        <div class="input flex flex-col mb-6">
+        <div class="input flex flex-col mb-6 bg-content-color">
           <label
             for="productDescription"
-            class="productdescription text-xs mb-2"
+            class="productdescription text-xs mb-2 bg-content-color"
             >Product Description</label
           >
           <input
@@ -210,14 +238,24 @@
           />
         </div>
 
-        <div class="work-items">
-          <h3 class="item-list mb-4 text-lg text-gray-500 w-full">Item List</h3>
-          <table class="item-list mb-4 text-lg w-full">
-            <tr class="table-heading flex gap-4 text-sm mb-4">
-              <th class="item-name basis-1/2 text-left">Item Name</th>
-              <th class="qty basis-1/5 text-left">Quantity</th>
-              <th class="price basis-1/5 text-left">Price</th>
-              <th class="total basis-1/5 self-center text-left">Total</th>
+        <div class="work-items bg-content-color">
+          <h3
+            class="item-list mb-4 text-lg text-gray-500 w-full bg-content-color"
+          >
+            Item List
+          </h3>
+          <table class="item-list mb-4 text-lg w-full bg-content-color">
+            <tr class="table-heading flex gap-4 text-sm mb-4 bg-content-color">
+              <th class="item-name basis-1/2 text-left bg-content-color">
+                Item Name
+              </th>
+              <th class="qty basis-1/5 text-left bg-content-color">Quantity</th>
+              <th class="price basis-1/5 text-left bg-content-color">Price</th>
+              <th
+                class="total basis-1/5 self-center text-left bg-content-color"
+              >
+                Total
+              </th>
             </tr>
             <tr
               class="table-items flex gap-4 text-sm relative mb-6 w-full"
