@@ -7,7 +7,7 @@
   </div>
   <div
     v-else
-    class="mobile-message flex flex-col text-center justify-center h-screen bg-purple text-white"
+    class="mobile-message flex flex-col text-center justify-center h-screen bg-text-back text-white"
   >
     <h1 class="text-4xl font-bold">
       Sorry, this app is not support on Mobile Devices
@@ -44,6 +44,6 @@ const checkSize = () => {
   padding: 0;
   box-sizing: border-box;
   font-family: "Poppins", sans-serif;
-  background-color: #1e2139;
+  background-color: #22274f;
 }
 </style>
