@@ -1,7 +1,9 @@
 <template>
   <div v-if="!mobileWidth" class="app flex h-full flex-col lg:flex-row m-8">
     <div class="app-content mx-auto w-custom">
-      <InvoiceModal />
+      <transition name="invoice">
+        <InvoiceModal v-if="invoiceModal" />
+      </transition>
       <router-view />
     </div>
   </div>
@@ -16,23 +18,38 @@
   </div>
 </template>
 
-<script setup>
+<script>
+import { mapState } from "vuex";
 import InvoiceModal from "./components/InvoiceModal.vue";
-import { ref, onMounted } from "vue";
+import Navigation from "./components/Navigation.vue";
 
-let mobileWidth = ref(null);
-
-onMounted(() => {
-  checkSize();
-  window.addEventListener("resize", checkSize);
-});
-
-const checkSize = () => {
-  let windowWidth = window.innerWidth;
-  if (windowWidth <= 750) {
-    return (mobileWidth.value = true);
-  }
-  mobileWidth.value = false;
+export default {
+  data() {
+    return {
+      mobileWidth: null,
+    };
+  },
+  components: {
+    Navigation,
+    InvoiceModal,
+  },
+  created() {
+    this.checkScreen();
+    window.addEventListener("resize", this.checkScreen);
+  },
+  methods: {
+    checkScreen() {
+      const windowWidth = window.innerWidth;
+      if (windowWidth <= 750) {
+        this.mobileWidth = true;
+        return;
+      }
+      this.mobileWidth = false;
+    },
+  },
+  computed: {
+    ...mapState(["invoiceModal"]),
+  },
 };
 </script>
 
@@ -45,5 +62,13 @@ const checkSize = () => {
   box-sizing: border-box;
   font-family: "Poppins", sans-serif;
   background-color: #22274f;
+}
+.invoice-enter-active,
+.invoice-leave-active {
+  transition: 0.8s ease all;
+}
+.invoice-enter-from,
+.invoice-leave-to {
+  transform: translateX(-700px);
 }
 </style>
