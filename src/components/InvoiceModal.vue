@@ -1,6 +1,6 @@
 <template>
   <div
-    @click="checkClick"
+    @click.prevent="checkClick"
     ref="invoiceWrap"
     class="invoice-wrap flex flex-col bg-transparent fixed top-0 left-0 max-w-[700px] h-screen lg:left-[30px] overflow-auto scrollbar-none"
   >
@@ -328,10 +328,12 @@
   </div>
 </template>
 <script>
+import { mapMutations } from "vuex";
 export default {
   name: "InvoiceModal",
   data() {
     return {
+      dateOptions: { year: "numeric", month: "short", day: "numeric" },
       billerStreetAdress: null,
       billerCity: null,
       billerZipCode: null,
@@ -353,6 +355,19 @@ export default {
       invoiceItemList: [],
       invoiceTotal: 0,
     };
+  },
+  created() {
+    this.invoiceDateUnix = Date.now();
+    this.invoiceDate = new Date(this.invoiceDateUnix).toLocaleDateString(
+      "en-us",
+      this.dateOptions
+    );
+  },
+  methods: {
+    ...mapMutations(["TOGGLE_INVOICE"]),
+    closeInvoice() {
+      this.TOGGLE_INVOICE();
+    },
   },
 };
 </script>
