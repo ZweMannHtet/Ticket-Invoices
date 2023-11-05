@@ -196,7 +196,7 @@
           </div>
           <div class="input flex flex-col mb-6 flex-1 bg-content-color">
             <label
-              for="invoiceDateUnix"
+              for="paymentDueDate"
               class="paymentdue text-xs mb-2 bg-content-color"
               >Payment Due</label
             >
@@ -204,8 +204,8 @@
               class="text-input bg-white text-gray-700 w-full rounded-sm py-1.5 px-1 border-none focus:outline-none"
               type="text"
               disabled
-              id="invoiceDateUnix"
-              v-model="invoiceDateUnix"
+              id="paymentDueDate"
+              v-model="paymentDueDate"
             />
           </div>
         </div>
@@ -250,7 +250,7 @@
           </h3>
           <table class="item-list mb-4 text-lg w-full bg-content-color">
             <tr class="table-heading flex gap-4 text-sm mb-4 bg-content-color">
-              <th class="item-name basis-1/2 text-left bg-content-color">
+              <th class="itemName basis-1/2 text-left bg-content-color">
                 Item Name
               </th>
               <th class="qty basis-1/5 text-left bg-content-color">Quantity</th>
@@ -262,27 +262,41 @@
               </th>
             </tr>
             <tr
-              class="table-items flex gap-4 text-sm relative mb-6 w-full"
+              class="table-items flex gap-4 text-sm relative mb-6 w-full bg-content-color"
               v-for="(item, index) in invoiceItemList"
               :key="index"
             >
-              <td class="item-name basis-1/2">
-                <input type="text" v-model="item.itemName" class="nameInput" />
+              <td class="itemName basis-1/2 bg-content-color">
+                <input
+                  type="text"
+                  v-model="item.itemName"
+                  class="nameInput bg-white text-gray-700 w-[240px] rounded-sm py-1.5 px-1 border-none focus:outline-none"
+                />
               </td>
-              <td class="qty basis-[10%]">
-                <input type="text" v-model="item.qty" />
+              <td class="qty basis-[10%] bg-content-color text-left">
+                <input
+                  type="text"
+                  v-model="item.qty"
+                  class="qtyInput bg-white w-[100px] text-gray-700 rounded-sm py-1.5 px-1 border-none focus:outline-none"
+                />
               </td>
-              <td class="price basis-1/5">
-                <input type="text" v-model="item.price" />
+              <td class="price basis-1/5 bg-content-color">
+                <input
+                  type="text"
+                  v-model="item.price"
+                  class="priceInput bg-white w-[100px] text-gray-700 rounded-sm py-1.5 px-1 border-none focus:outline-none"
+                />
               </td>
-              <td class="total basis-1/5 self-center">
+              <td
+                class="total basis-1/5 self-center w-[100px] rounded-sm py-1.5 px-1 text-white bg-content-color"
+              >
                 $ {{ (item.total = item.qty * item.price) }}
               </td>
               <img
                 @click="deleteInvoiceItem(item.id)"
                 src="@/assets/icon-delete.svg"
                 alt=""
-                class="item-image absolute top-4 right-0 w-3 h-4"
+                class="item-image absolute top-2 right-0 w-3 h-4 text-white"
               />
             </tr>
           </table>
@@ -329,6 +343,7 @@
 </template>
 <script>
 import { mapMutations } from "vuex";
+import { uid } from "uid";
 export default {
   name: "InvoiceModal",
   data() {
@@ -367,6 +382,31 @@ export default {
     ...mapMutations(["TOGGLE_INVOICE"]),
     closeInvoice() {
       this.TOGGLE_INVOICE();
+    },
+    addInvoiceItem() {
+      this.invoiceItemList.push({
+        id: uid(),
+        itemName: "",
+        qty: "",
+        price: 0,
+        total: 0,
+      });
+    },
+    deleteInvoiceItem(id) {
+      this.invoiceItemList = this.invoiceItemList.filter(
+        (item) => item.id !== id
+      );
+    },
+  },
+  watch: {
+    paymentTerms() {
+      const futureDate = new Date();
+      this.paymentDueDateUnix = futureDate.setDate(
+        futureDate.getDate() + parseInt(this.paymentTerms)
+      );
+      this.paymentDueDate = new Date(
+        this.paymentDueDateUnix
+      ).toLocaleDateString("en-us", this.dateOptions);
     },
   },
 };
