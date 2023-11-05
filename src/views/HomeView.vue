@@ -63,6 +63,7 @@
 </template>
 
 <script>
+import { mapMutations } from "vuex";
 export default {
   data() {
     return {
@@ -70,8 +71,9 @@ export default {
     };
   },
   methods: {
+    ...mapMutations(["TOGGLE_INVOICE"]),
     newInvoice() {
-      console.log("hi");
+      this.TOGGLE_INVOICE();
     },
     toggleMenu() {
       this.filterMenu = !this.filterMenu;
