@@ -2,12 +2,13 @@
   <div
     @click.prevent="checkClick"
     ref="invoiceWrap"
-    class="invoice-wrap flex flex-col bg-transparent fixed top-0 left-0 max-w-[700px] h-screen lg:left-[30px] overflow-auto scrollbar-none"
+    class="invoice-wrap flex flex-col bg-transparent fixed top-0 left-0 w-full h-screen lg:left-[30px] overflow-auto scrollbar-none"
   >
     <form
       @submit.prevent="submitForm"
       class="invoice-content max-w-[700px] w-full relative p-14 bg-content-color text-white shadow-lg"
     >
+      <Loading v-show="loading" />
       <h1 class="new-invoice mb-12 text-white text-3xl bg-content-color">
         New Invoice
       </h1>
@@ -218,7 +219,6 @@
           >
           <select
             class="text-input bg-white w-full py-1.5 px-1 border-none focus:outline-none"
-            type="text"
             required
             id="paymentTerms"
             v-model="paymentTerms"
@@ -269,6 +269,7 @@
               <td class="itemName basis-1/2 bg-content-color">
                 <input
                   type="text"
+                  required
                   v-model="item.itemName"
                   class="nameInput bg-white text-gray-700 w-[240px] rounded-sm py-1.5 px-1 border-none focus:outline-none"
                 />
@@ -276,6 +277,7 @@
               <td class="qty basis-[10%] bg-content-color text-left">
                 <input
                   type="text"
+                  required
                   v-model="item.qty"
                   class="qtyInput bg-white w-[100px] text-gray-700 rounded-sm py-1.5 px-1 border-none focus:outline-none"
                 />
@@ -283,6 +285,7 @@
               <td class="price basis-1/5 bg-content-color">
                 <input
                   type="text"
+                  required
                   v-model="item.price"
                   class="priceInput bg-white w-[100px] text-gray-700 rounded-sm py-1.5 px-1 border-none focus:outline-none"
                 />
@@ -318,6 +321,7 @@
         <div class="left bg-content-color flex-1">
           <button
             @click="closeInvoice"
+            type="left"
             class="cancel bg-red items-center py-3 px-3 rounded-[40px] mr-2 text-white"
           >
             Cancel
@@ -326,12 +330,14 @@
         <div class="right flex bg-content-color flex-1 justify-end">
           <button
             @click="saveDraft"
+            type="submit"
             class="draft bg-dark-purple items-center py-3 px-3 rounded-[40px] mr-2 text-white"
           >
             Save Draft
           </button>
           <button
             @click="publishInvoice"
+            type="submit"
             class="create bg-pale-purple items-center py-3 px-3 rounded-[40px] mr-2 text-white"
           >
             Create Invoices
@@ -342,13 +348,17 @@
   </div>
 </template>
 <script>
+import db from "../firebase/config";
+import Loading from "./Loading.vue";
 import { mapMutations } from "vuex";
 import { uid } from "uid";
 export default {
   name: "InvoiceModal",
+  components: { Loading },
   data() {
     return {
       dateOptions: { year: "numeric", month: "short", day: "numeric" },
+      loading: null,
       billerStreetAdress: null,
       billerCity: null,
       billerZipCode: null,
@@ -367,6 +377,7 @@ export default {
       productDescription: null,
       invoicePending: null,
       invoiceDraft: null,
+      invoicePaid: null,
       invoiceItemList: [],
       invoiceTotal: 0,
     };
@@ -379,9 +390,14 @@ export default {
     );
   },
   methods: {
-    ...mapMutations(["TOGGLE_INVOICE"]),
+    ...mapMutations(["TOGGLE_INVOICE", "TOGGLE_FLASH"]),
     closeInvoice() {
       this.TOGGLE_INVOICE();
+    },
+    checkClick(e) {
+      if (e.target === this.$refs.invoiceWrap) {
+        this.TOGGLE_FLASH();
+      }
     },
     addInvoiceItem() {
       this.invoiceItemList.push({
@@ -396,6 +412,61 @@ export default {
       this.invoiceItemList = this.invoiceItemList.filter(
         (item) => item.id !== id
       );
+    },
+    calInvoiceTotal() {
+      this.invoiceTotal = 0;
+      this.invoiceItemList.forEach((item) => {
+        this.invoiceTotal += item.total;
+      });
+    },
+    publishInvoice() {
+      this.invoicePending = true;
+      this.uploadInvoice();
+    },
+    saveDraft() {
+      this.invoiceDraft = true;
+    },
+    async uploadInvoice() {
+      if (this.invoiceItemList <= 0) {
+        alert("please fill first");
+        return;
+      }
+      this.loading = true;
+
+      this.calInvoiceTotal();
+
+      const dataBase = db.collection("invoices").doc();
+
+      await dataBase.set({
+        invoiceId: uid(6),
+        billerStreetAdress: this.billerStreetAdress,
+        billerCity: this.billerCity,
+        billerZipCode: this.billerZipCode,
+        billerCountry: this.billerCountry,
+        clientName: this.clientName,
+        clientEmail: this.clientEmail,
+        clientStreetAddress: this.clientStreetAddress,
+        clientCity: this.clientCity,
+        clientZipCode: this.clientZipCode,
+        clientCountry: this.clientCountry,
+        invoiceDateUnix: this.invoiceDateUnix,
+        invoiceDate: this.invoiceDate,
+        paymentTerms: this.paymentTerms,
+        paymentDueDateUnix: this.paymentDueDateUnix,
+        paymentDueDate: this.paymentDueDate,
+        productDescription: this.productDescription,
+        invoicePending: this.invoicePending,
+        invoiceDraft: this.invoiceDraft,
+        invoicePaid: null,
+        invoiceItemList: this.invoiceItemList,
+        invoiceTotal: this.invoiceTotal,
+      });
+
+      this.loading = false;
+      this.TOGGLE_INVOICE();
+    },
+    submitForm() {
+      this.uploadInvoice();
     },
   },
   watch: {
